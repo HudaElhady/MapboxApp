@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1EA12D2B219A3CD600FFC525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2A219A3CD600FFC525 /* AppDelegate.swift */; };
-		1EA12D2D219A3CD600FFC525 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2C219A3CD600FFC525 /* ViewController.swift */; };
+		1EA12D2D219A3CD600FFC525 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2C219A3CD600FFC525 /* MapViewController.swift */; };
 		1EA12D30219A3CD600FFC525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA12D2E219A3CD600FFC525 /* Main.storyboard */; };
 		1EA12D33219A3CD600FFC525 /* MapboxApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D31219A3CD600FFC525 /* MapboxApp.xcdatamodeld */; };
 		1EA12D35219A3CD700FFC525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EA12D34219A3CD700FFC525 /* Assets.xcassets */; };
 		1EA12D38219A3CD700FFC525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA12D36219A3CD700FFC525 /* LaunchScreen.storyboard */; };
+		1EA12D44219A410C00FFC525 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D43219A410C00FFC525 /* MapViewModel.swift */; };
 		FE250CA643CEC3898BA76727 /* Pods_MapboxApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F944C4EE7E9D1B1479784449 /* Pods_MapboxApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,12 +21,13 @@
 		00C2E9E8CCCEE4CDFDA2A04E /* Pods-MapboxApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapboxApp/Pods-MapboxApp.debug.xcconfig"; sourceTree = "<group>"; };
 		1EA12D27219A3CD600FFC525 /* MapboxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapboxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EA12D2A219A3CD600FFC525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EA12D2C219A3CD600FFC525 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1EA12D2C219A3CD600FFC525 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		1EA12D2F219A3CD600FFC525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1EA12D32219A3CD600FFC525 /* MapboxApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapboxApp.xcdatamodel; sourceTree = "<group>"; };
 		1EA12D34219A3CD700FFC525 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EA12D37219A3CD700FFC525 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1EA12D39219A3CD700FFC525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EA12D43219A410C00FFC525 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		3BFCD8B391B174BCF3485E56 /* Pods-MapboxApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapboxApp/Pods-MapboxApp.release.xcconfig"; sourceTree = "<group>"; };
 		F944C4EE7E9D1B1479784449 /* Pods_MapboxApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapboxApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				1EA12D2E219A3CD600FFC525 /* Main.storyboard */,
-				1EA12D2C219A3CD600FFC525 /* ViewController.swift */,
+				1EA12D2C219A3CD600FFC525 /* MapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -95,6 +97,7 @@
 		1EA12D40219A3CE400FFC525 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1EA12D43219A410C00FFC525 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -248,8 +251,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EA12D33219A3CD600FFC525 /* MapboxApp.xcdatamodeld in Sources */,
-				1EA12D2D219A3CD600FFC525 /* ViewController.swift in Sources */,
+				1EA12D2D219A3CD600FFC525 /* MapViewController.swift in Sources */,
 				1EA12D2B219A3CD600FFC525 /* AppDelegate.swift in Sources */,
+				1EA12D44219A410C00FFC525 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
