@@ -1,0 +1,20 @@
+PODS:
+  - Mapbox-iOS-SDK (4.6.0)
+  - SwiftSpinner (1.6.2)
+
+DEPENDENCIES:
+  - Mapbox-iOS-SDK (~> 4.6)
+  - SwiftSpinner
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Mapbox-iOS-SDK
+    - SwiftSpinner
+
+SPEC CHECKSUMS:
+  Mapbox-iOS-SDK: 204c04713477cf2a88c52c5a8eed1790eb75a02a
+  SwiftSpinner: 3a4c6dea425e5a31b908a8b1dd5dcd1ad4d96340
+
+PODFILE CHECKSUM: ae8824a4e298252e28ed9bdd73848660204542c0
+
+COCOAPODS: 1.5.3
