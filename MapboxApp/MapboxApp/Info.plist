@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoiaHVkYWVsaGFkeSIsImEiOiJjam85d3dxaWgwOGo0M3BtcG9qMjYydGp2In0.6wmVed83dj-8aljLo1l9pw</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Makani wants to know your location so you could add your favorite places</string>
 </dict>
 </plist>
