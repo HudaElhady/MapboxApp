@@ -18,7 +18,6 @@ class ShowAllLocationsViewController :UIViewController,MGLMapViewDelegate {
       //MARK: - Properties
       var locations : [NSManagedObject] = []
       
-      
       //MARK: - View Life cycle
       override func viewDidLoad() {
             super.viewDidLoad()
@@ -26,9 +25,10 @@ class ShowAllLocationsViewController :UIViewController,MGLMapViewDelegate {
       }
       
       func setConfiguration() {
-            for location in locations {
-                  addMarker(locationObj: location)
-            }
+            mapView.zoomLevel = 15
+            mapView.styleURL = MGLStyle.streetsStyleURL
+            mapView.delegate = self
+           showAllAnnotation()
       }
       
       //MARK: - Actions
@@ -44,25 +44,24 @@ class ShowAllLocationsViewController :UIViewController,MGLMapViewDelegate {
                   mapView.styleURL = MGLStyle.streetsStyleURL
             }
       }
-      
-      func addMarker(locationObj : NSManagedObject) {
-             let lat = locationObj.value(forKeyPath: "latitude") as? Double
-            let long = locationObj.value(forKeyPath: "longitude") as? Double
-           let name = locationObj.value(forKeyPath: "name") as? String
-            let currentLocation = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
-            mapView.setCenter(currentLocation, zoomLevel: 12, animated: false)
-            view.addSubview(mapView)
-            mapView.styleURL = MGLStyle.streetsStyleURL
-            mapView.delegate = self
-            addAnnotation(name: name ?? "", location: currentLocation)
+      func showAllAnnotation()  {
+            var annotations = [MGLPointAnnotation]()
+            for locationObj in locations {
+                  let lat = locationObj.value(forKeyPath: "latitude") as? Double
+                  let long = locationObj.value(forKeyPath: "longitude") as? Double
+                  let name = locationObj.value(forKeyPath: "name") as? String
+                  let currentLocation = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
+                  annotations.append(addAnnotation(name: name ?? "", location: currentLocation))
+            }
+            mapView.addAnnotations(annotations)
       }
-
-      func addAnnotation(name: String,location:CLLocationCoordinate2D) {
+      
+      func addAnnotation(name: String,location:CLLocationCoordinate2D)->MGLPointAnnotation {
             let newAnnotation = MGLPointAnnotation()
             newAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude:location.longitude)
             newAnnotation.title = "Hello"
             newAnnotation.subtitle = name
-            mapView.addAnnotation(newAnnotation)
+            return newAnnotation            
       }
       
       // Allow callout view to appear when an annotation is tapped.
