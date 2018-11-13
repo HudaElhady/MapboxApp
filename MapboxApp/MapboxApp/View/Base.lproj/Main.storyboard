@@ -17,12 +17,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tOG-Uj-h6o" customClass="MGLMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOG-Uj-h6o" customClass="MGLMapView">
                                 <rect key="frame" x="0.0" y="201" width="375" height="466"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rbs-lc-NQw">
                                 <rect key="frame" x="1" y="65" width="373" height="41"/>
+                                <color key="backgroundColor" red="0.43921568630000002" green="0.1647058824" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Mwo-XI-qxT"/>
                                 </constraints>
@@ -31,6 +32,7 @@
                                     <segment title="Satellite"/>
                                     <segment title="Light"/>
                                 </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <action selector="mapStyleSegmentedControlHandler:" destination="m6t-5h-o1i" eventType="valueChanged" id="l2d-EL-rl3"/>
                                 </connections>
@@ -43,16 +45,18 @@
                             <constraint firstItem="Rbs-lc-NQw" firstAttribute="top" secondItem="OkM-mJ-dpF" secondAttribute="top" constant="1" id="ELI-AB-QaI"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" id="G1P-A8-voF"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="top" secondItem="Rbs-lc-NQw" secondAttribute="bottom" constant="1" id="aVy-DB-4I7"/>
-                            <constraint firstItem="OkM-mJ-dpF" firstAttribute="trailing" secondItem="Rbs-lc-NQw" secondAttribute="trailing" constant="1" id="lpH-9X-2Be"/>
-                            <constraint firstItem="Rbs-lc-NQw" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" constant="1" id="vNX-IA-hPr"/>
+                            <constraint firstItem="OkM-mJ-dpF" firstAttribute="trailing" secondItem="Rbs-lc-NQw" secondAttribute="trailing" id="lpH-9X-2Be"/>
+                            <constraint firstItem="Rbs-lc-NQw" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" id="vNX-IA-hPr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OkM-mJ-dpF"/>
                     </view>
-                    <navigationItem key="navigationItem" title="  My Location" id="Jyy-Ie-4yU"/>
+                    <navigationItem key="navigationItem" title="  My Location" id="Jyy-Ie-4yU">
+                        <barButtonItem key="backBarButtonItem" title="  " id="vkl-wT-FAa"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="tOG-Uj-h6o" id="gby-B4-Bo3"/>
                         <outlet property="styleSegmentedControl" destination="Rbs-lc-NQw" id="5i2-0R-6He"/>
-                        <segue destination="fJP-bu-THh" kind="show" identifier="FavoriteSegue" id="bde-Mv-yXG"/>
+                        <segue destination="fJP-bu-THh" kind="push" identifier="FavoriteSegue" id="bde-Mv-yXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1z6-rv-1hq" sceneMemberID="firstResponder"/>
@@ -63,9 +67,14 @@
         <scene sceneID="GMU-zn-yT8">
             <objects>
                 <navigationController id="Oyy-XU-TeI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GOw-LZ-b8k">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" backIndicatorImage="  " id="GOw-LZ-b8k">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.4392156862745098" green="0.16470588235294117" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="m6t-5h-o1i" kind="relationship" relationship="rootViewController" id="opQ-Yl-riy"/>
@@ -75,19 +84,19 @@
             </objects>
             <point key="canvasLocation" x="-1377" y="-122"/>
         </scene>
-        <!--Favorite Locations View Controller-->
+        <!--Favorite Locations-->
         <scene sceneID="Aap-Bs-1Wn">
             <objects>
-                <viewController id="fJP-bu-THh" customClass="FavoriteLocationsViewController" customModule="MapFirst" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fJP-bu-THh" customClass="FavoriteLocationsViewController" customModule="MapboxApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W8f-IA-9jb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hWz-vO-2PH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="74" id="W5D-Fl-4DA" customClass="LocationTableViewCell" customModule="MapFirst" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="74" id="W5D-Fl-4DA" customClass="LocationTableViewCell" customModule="MapboxApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W5D-Fl-4DA" id="W2S-aj-cdx">
@@ -149,6 +158,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gto-Kh-Jr7"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Favorite Locations" id="lSS-w5-FAD">
+                        <barButtonItem key="backBarButtonItem" title="  " id="hmW-Pe-kZO"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="hWz-vO-2PH" id="eJA-Dm-sRP"/>
                     </connections>
@@ -159,6 +171,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map-pin" width="16" height="16"/>
+        <image name="  " width="16" height="16"/>
+        <image name="map-pin" width="32" height="32"/>
     </resources>
 </document>
