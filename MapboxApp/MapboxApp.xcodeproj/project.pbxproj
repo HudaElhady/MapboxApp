@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2FE023219B53BD00FF9373 /* ShowAllLocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2FE022219B53BD00FF9373 /* ShowAllLocationsViewController.swift */; };
 		1E6A9517219AEBA2007E1813 /* GeneralMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6A9516219AEBA2007E1813 /* GeneralMethods.swift */; };
 		1E6A9519219AEF22007E1813 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E6A9518219AEF22007E1813 /* Localizable.strings */; };
 		1EA12D2B219A3CD600FFC525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2A219A3CD600FFC525 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		00C2E9E8CCCEE4CDFDA2A04E /* Pods-MapboxApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapboxApp/Pods-MapboxApp.debug.xcconfig"; sourceTree = "<group>"; };
+		1E2FE022219B53BD00FF9373 /* ShowAllLocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAllLocationsViewController.swift; sourceTree = "<group>"; };
 		1E6A9516219AEBA2007E1813 /* GeneralMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralMethods.swift; sourceTree = "<group>"; };
 		1E6A9518219AEF22007E1813 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1EA12D27219A3CD600FFC525 /* MapboxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapboxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 				1EA12D2E219A3CD600FFC525 /* Main.storyboard */,
 				1EA12D2C219A3CD600FFC525 /* MapViewController.swift */,
 				1EA12D45219A488C00FFC525 /* FavoriteLocationsViewController.swift */,
+				1E2FE022219B53BD00FF9373 /* ShowAllLocationsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				1EA12D2D219A3CD600FFC525 /* MapViewController.swift in Sources */,
 				1EA12D48219A48CC00FFC525 /* FavoriteLocationsViewModel.swift in Sources */,
 				1EA12D2B219A3CD600FFC525 /* AppDelegate.swift in Sources */,
+				1E2FE023219B53BD00FF9373 /* ShowAllLocationsViewController.swift in Sources */,
 				1EA12D44219A410C00FFC525 /* MapViewModel.swift in Sources */,
 				1EA12D46219A488C00FFC525 /* FavoriteLocationsViewController.swift in Sources */,
 				1EA12D4D219A4A9A00FFC525 /* Constants.swift in Sources */,

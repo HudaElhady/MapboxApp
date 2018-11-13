@@ -13,16 +13,17 @@ import CoreLocation
 
 
 class FavoriteLocationsViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
+      //MARK: - Outlets
       @IBOutlet weak var tableView: UITableView!
-      var locations : [NSManagedObject] = []
+      //MARK: - Properties
       var viewModel : FavoriteLocationsViewModel!
+       //MARK: - View Life cycle
       override func viewDidLoad() {
             super.viewDidLoad()
             viewModel = FavoriteLocationsViewModel()
             getLocations()
       }
-      
-      
+      //MARK: - Get Locations
       func getLocations() {
             SwiftSpinner.show("Saving Location")
         viewModel.getLocations(completion: {[weak self] in
@@ -35,12 +36,27 @@ class FavoriteLocationsViewController: UIViewController , UITableViewDataSource 
     func getLocationResponse() {
         SwiftSpinner.hide()
         tableView.reloadData()
+      if viewModel.locations.count > 0 {
+            addShowAllBtn()
+      }
     }
     func getLocationErrorHandler() {
         SwiftSpinner.hide()
         showAlert(title: "", message: NSLocalizedString("general-error", comment: "") , vc: self, closure: nil)
     }
-    
+      //MARK: - Option Button
+      func addShowAllBtn()
+      {
+            let showAllBtn = UIBarButtonItem(title: "Show All", style: .plain, target: self, action: #selector(showAllLocationOnMap))
+            navigationItem.rightBarButtonItem = showAllBtn
+      }
+      @objc func showAllLocationOnMap() {
+            let mapVC =  storyboard?.instantiateViewController(withIdentifier: "ShowAllLocationsViewController") as! ShowAllLocationsViewController
+            mapVC.locations = viewModel.locations
+            self.navigationController?.pushViewController(mapVC, animated: true)
+      }
+      
+      //MARK: - TableView Datasource
       func tableView(_ tableView: UITableView,
                      numberOfRowsInSection section: Int) -> Int {
             return viewModel.locations.count
@@ -55,7 +71,7 @@ class FavoriteLocationsViewController: UIViewController , UITableViewDataSource 
             cell.setData(location: location)
             return cell
       }
-      
+      //MARK: - TableView Delegate
       func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 100
       }

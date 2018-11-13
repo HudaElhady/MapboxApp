@@ -15,9 +15,9 @@ class MapViewController: UIViewController,MGLMapViewDelegate {
       //MARK: - Outlets
       @IBOutlet weak var mapView: MGLMapView!
       @IBOutlet weak var styleSegmentedControl: UISegmentedControl!
+      
       //MARK: - Properties
       let locationManager = CLLocationManager()
-//      var currentLocation : CLLocationCoordinate2D!
       var locationName = ""
       lazy var geocoder = CLGeocoder()
       var viewModel : MapViewModel!
@@ -37,7 +37,7 @@ class MapViewController: UIViewController,MGLMapViewDelegate {
                   addMarker()
             }
       }
-      
+      //MARK: - Actions
       @IBAction func mapStyleSegmentedControlHandler(_ sender: UISegmentedControl) {
             switch sender.selectedSegmentIndex {
             case 0:
@@ -50,16 +50,7 @@ class MapViewController: UIViewController,MGLMapViewDelegate {
                   mapView.styleURL = MGLStyle.streetsStyleURL
             }
       }
-      
-      func saveLocationResponse() {
-            SwiftSpinner.hide()
-        showAlert(title: "", message: NSLocalizedString("save-success", comment: ""), vc: self, closure: nil)
-      }
-    func saveLocationErrorHandler() {
-        SwiftSpinner.hide()
-        showAlert(title: "", message: NSLocalizedString("general-error", comment: ""), vc: self, closure: nil)
-    }
-      
+      //MARK: - Option Button
       func addOptionsBtn()
       {
             let optionBtn = UIBarButtonItem(image: UIImage(named: "options"), style: .plain, target: self, action: #selector(displayOptions))
@@ -69,12 +60,7 @@ class MapViewController: UIViewController,MGLMapViewDelegate {
             let alertController = UIAlertController(title: "Options", message: "", preferredStyle: .actionSheet)
             
             let saveAction = UIAlertAction(title: "Save Location to Favorites", style: .default) { (action) in
-                  SwiftSpinner.show("Saving Location")
-                  self.viewModel.saveLocation(lat: self.viewModel.currentLocation.latitude, long: self.viewModel.currentLocation.longitude, locationName: self.locationName, saveLocationCompletion: {[weak self] in
-                        self?.saveLocationResponse()
-                    }, errorHandler: {[weak self] in
-                        self?.saveLocationErrorHandler()
-                })
+                 self.saveLocationAction()
             }
             alertController.addAction(saveAction)
             let favaoritesAction = UIAlertAction(title: "Show Favaorite Locations", style: .default) { (action) in
@@ -85,6 +71,24 @@ class MapViewController: UIViewController,MGLMapViewDelegate {
             alertController.addAction(cancelButton)
             alertController.view.tintColor = purpleColor
             self.present(alertController, animated: true, completion: nil)
+      }
+      
+      //MARK: - Save Location Action
+      func saveLocationAction() {
+            SwiftSpinner.show("Saving Location")
+            self.viewModel.saveLocation(lat: self.viewModel.currentLocation.latitude, long: self.viewModel.currentLocation.longitude, locationName: self.locationName, saveLocationCompletion: {[weak self] in
+                  self?.saveLocationResponse()
+                  }, errorHandler: {[weak self] in
+                        self?.saveLocationErrorHandler()
+            })
+      }
+      func saveLocationResponse() {
+            SwiftSpinner.hide()
+            showAlert(title: "", message: NSLocalizedString("save-success", comment: ""), vc: self, closure: nil)
+      }
+      func saveLocationErrorHandler() {
+            SwiftSpinner.hide()
+            showAlert(title: "", message: NSLocalizedString("general-error", comment: ""), vc: self, closure: nil)
       }
 }
 

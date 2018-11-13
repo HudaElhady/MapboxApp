@@ -63,6 +63,57 @@
             </objects>
             <point key="canvasLocation" x="-634.39999999999998" y="-123.68815592203899"/>
         </scene>
+        <!--Show All Locations View Controller-->
+        <scene sceneID="RWy-w7-uVB">
+            <objects>
+                <viewController storyboardIdentifier="ShowAllLocationsViewController" id="Jcc-hM-ZM1" customClass="ShowAllLocationsViewController" customModule="MapboxApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F9X-y3-6Jr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5m-5O-7w3" customClass="MGLMapView">
+                                <rect key="frame" x="0.0" y="53" width="375" height="561"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qmG-iE-ls7">
+                                <rect key="frame" x="0.0" y="313" width="375" height="41"/>
+                                <color key="backgroundColor" red="0.43921568630000002" green="0.1647058824" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lJS-DI-hYJ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Streets"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Light"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="mapStyleSegmentedControlHandler:" destination="m6t-5h-o1i" eventType="valueChanged" id="FBF-JT-Pjp"/>
+                                    <action selector="mapStyleSegmentedControlHandler:" destination="Jcc-hM-ZM1" eventType="touchUpInside" id="bOP-fC-P3b"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kJJ-sT-gRR" firstAttribute="trailing" secondItem="qmG-iE-ls7" secondAttribute="trailing" id="AcC-pQ-FJb"/>
+                            <constraint firstItem="qmG-iE-ls7" firstAttribute="top" secondItem="kJJ-sT-gRR" secondAttribute="top" constant="1" id="DkZ-he-8Gf"/>
+                            <constraint firstItem="o5m-5O-7w3" firstAttribute="leading" secondItem="kJJ-sT-gRR" secondAttribute="leading" id="Fpw-kk-zeg"/>
+                            <constraint firstItem="qmG-iE-ls7" firstAttribute="leading" secondItem="kJJ-sT-gRR" secondAttribute="leading" id="MuI-y7-cP3"/>
+                            <constraint firstItem="kJJ-sT-gRR" firstAttribute="bottom" secondItem="o5m-5O-7w3" secondAttribute="bottom" id="Nsl-zG-DS0"/>
+                            <constraint firstItem="kJJ-sT-gRR" firstAttribute="trailing" secondItem="o5m-5O-7w3" secondAttribute="trailing" id="WJc-iU-b5o"/>
+                            <constraint firstItem="o5m-5O-7w3" firstAttribute="top" secondItem="qmG-iE-ls7" secondAttribute="bottom" constant="1" id="kIP-e7-OWQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kJJ-sT-gRR"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="o5m-5O-7w3" id="jAX-QB-YdH"/>
+                        <outlet property="styleSegmentedControl" destination="qmG-iE-ls7" id="Kh4-ip-bbO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hyc-cw-w43" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1062" y="556"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="GMU-zn-yT8">
             <objects>

@@ -29,4 +29,5 @@ class FavoriteLocationsViewModel: NSObject {
                 errorHandler()
             }
       }
+      
 }
