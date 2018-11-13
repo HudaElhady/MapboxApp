@@ -14,15 +14,15 @@
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="m6t-5h-o1i" customClass="MapViewController" customModule="MapboxApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oll-lG-9Fe">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOG-Uj-h6o" customClass="MGLMapView">
-                                <rect key="frame" x="0.0" y="201" width="375" height="466"/>
+                                <rect key="frame" x="0.0" y="42" width="375" height="561"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Rbs-lc-NQw">
-                                <rect key="frame" x="1" y="65" width="373" height="41"/>
+                                <rect key="frame" x="0.0" y="1" width="375" height="41"/>
                                 <color key="backgroundColor" red="0.43921568630000002" green="0.1647058824" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Mwo-XI-qxT"/>
@@ -40,7 +40,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="tOG-Uj-h6o" firstAttribute="bottom" secondItem="OkM-mJ-dpF" secondAttribute="bottom" id="799-A9-NEM"/>
+                            <constraint firstItem="tOG-Uj-h6o" firstAttribute="bottom" secondItem="oll-lG-9Fe" secondAttribute="bottom" id="799-A9-NEM"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="trailing" secondItem="OkM-mJ-dpF" secondAttribute="trailing" id="EBb-yo-SqO"/>
                             <constraint firstItem="Rbs-lc-NQw" firstAttribute="top" secondItem="OkM-mJ-dpF" secondAttribute="top" constant="1" id="ELI-AB-QaI"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" id="G1P-A8-voF"/>
@@ -56,7 +56,7 @@
                     <connections>
                         <outlet property="mapView" destination="tOG-Uj-h6o" id="gby-B4-Bo3"/>
                         <outlet property="styleSegmentedControl" destination="Rbs-lc-NQw" id="5i2-0R-6He"/>
-                        <segue destination="fJP-bu-THh" kind="push" identifier="FavoriteSegue" id="bde-Mv-yXG"/>
+                        <segue destination="fJP-bu-THh" kind="show" identifier="FavoriteSegue" id="bde-Mv-yXG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1z6-rv-1hq" sceneMemberID="firstResponder"/>
@@ -67,7 +67,7 @@
         <scene sceneID="GMU-zn-yT8">
             <objects>
                 <navigationController id="Oyy-XU-TeI" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" backIndicatorImage="  " id="GOw-LZ-b8k">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="GOw-LZ-b8k">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -171,7 +171,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="  " width="16" height="16"/>
         <image name="map-pin" width="32" height="32"/>
     </resources>
 </document>

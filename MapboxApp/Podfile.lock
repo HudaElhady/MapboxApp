@@ -1,20 +1,24 @@
 PODS:
   - Mapbox-iOS-SDK (4.6.0)
   - SwiftSpinner (1.6.2)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - Mapbox-iOS-SDK (~> 4.6)
   - SwiftSpinner
+  - Toast-Swift (~> 3.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Mapbox-iOS-SDK
     - SwiftSpinner
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   Mapbox-iOS-SDK: 204c04713477cf2a88c52c5a8eed1790eb75a02a
   SwiftSpinner: 3a4c6dea425e5a31b908a8b1dd5dcd1ad4d96340
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: ae8824a4e298252e28ed9bdd73848660204542c0
+PODFILE CHECKSUM: 171581567b3a16a98bc848b0021285a43d337879
 
 COCOAPODS: 1.5.3

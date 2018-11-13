@@ -27,6 +27,9 @@ class FavoriteLocationsViewController: UIViewController , UITableViewDataSource 
             viewModel.getLocations(completion: {
                   SwiftSpinner.hide()
                   tableView.reloadData()
+            }, errorHandler: {
+                SwiftSpinner.hide()
+                tableView.reloadData()
             })
       }
       func tableView(_ tableView: UITableView,

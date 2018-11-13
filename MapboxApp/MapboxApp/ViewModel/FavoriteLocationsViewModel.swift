@@ -19,7 +19,7 @@ class FavoriteLocationsViewModel: NSObject {
                   }
             }
       }
-      func getLocations(completion: (()->())) {
+    func getLocations(completion: (()->()),errorHandler:(()->())) {
             guard let appDelegate =
                   UIApplication.shared.delegate as? AppDelegate else {
                         return
@@ -33,6 +33,7 @@ class FavoriteLocationsViewModel: NSObject {
                   completion()
             } catch let error as NSError {
                   print("Could not fetch. \(error), \(error.userInfo)")
+                errorHandler()
             }
       }
 }

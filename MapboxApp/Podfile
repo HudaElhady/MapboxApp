@@ -6,6 +6,7 @@ target 'MapboxApp' do
   use_frameworks!
 pod 'Mapbox-iOS-SDK', '~> 4.6'
 pod 'SwiftSpinner'
+pod 'Toast-Swift', '~> 3.0.1'
   # Pods for MapboxApp
 
 end
