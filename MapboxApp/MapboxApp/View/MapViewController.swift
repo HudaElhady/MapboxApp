@@ -11,13 +11,13 @@ import CoreLocation
 import Mapbox
 import SwiftSpinner
 
-class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDelegate {
+class MapViewController: UIViewController,MGLMapViewDelegate {
       //MARK: - Outlets
       @IBOutlet weak var mapView: MGLMapView!
       @IBOutlet weak var styleSegmentedControl: UISegmentedControl!
       //MARK: - Properties
       let locationManager = CLLocationManager()
-      var currentLocation : CLLocationCoordinate2D!
+//      var currentLocation : CLLocationCoordinate2D!
       var locationName = ""
       lazy var geocoder = CLGeocoder()
       var viewModel : MapViewModel!
@@ -27,15 +27,15 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
       override func viewDidLoad() {
             super.viewDidLoad()
             setConfiguration()
-            viewModel = MapViewModel()
       }
       
       func setConfiguration() {
-            if isMainView {
+            if viewModel.isMainView {
                   addOptionsBtn()
-                  setupLocationAcess()
+                  startLocationServices()
+            }else{
+                  addMarker()
             }
-            addMarker()
       }
       
       @IBAction func mapStyleSegmentedControlHandler(_ sender: UISegmentedControl) {
@@ -60,58 +60,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
         showAlert(title: "", message: NSLocalizedString("general-error", comment: ""), vc: self, closure: nil)
     }
       
-      func setupLocationAcess() {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.delegate = self
-        locationManager.distanceFilter = 1000
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-            //cairo location
-            currentLocation = CLLocationCoordinate2D(latitude: 30.06263, longitude: 31.24967)
-      }
-      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            let lastLocation: CLLocation = locations[locations.count - 1]
-            currentLocation.latitude = lastLocation.coordinate.latitude
-            currentLocation.longitude = lastLocation.coordinate.longitude
-            addMarker()
-//            locationManager.stopUpdatingLocation()
-      }
-      
-      
-      func addMarker() {
-            mapView.setCenter(CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude), zoomLevel: 12, animated: false)
-            view.addSubview(mapView)
-            mapView.styleURL = MGLStyle.streetsStyleURL
-            mapView.delegate = self
-            
-            geocoder.reverseGeocodeLocation(CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)) { (placemarks, error) in
-                  self.processGeocodeLocationResponse(withPlacemarks: placemarks, error: error)
-            }
-      }
-      
-      func processGeocodeLocationResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
-            // Update View
-            if error == nil {
-                  if let placemarks = placemarks, let placemark = placemarks.first {
-                   if let annotations = mapView.annotations , annotations.count > 0
-                   {
-                    mapView.removeAnnotation(annotations[0])
-                    }
-                        let hello = MGLPointAnnotation()
-                        hello.coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude:  currentLocation.longitude)
-                        hello.title = "Hello"
-                        hello.subtitle = placemark.name
-                        locationName = placemark.name!
-                        mapView.addAnnotation(hello)
-                  }
-            }
-      }
-      
-      // Allow callout view to appear when an annotation is tapped.
-      func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-            return true
-      }
-    
       func addOptionsBtn()
       {
             let optionBtn = UIBarButtonItem(image: UIImage(named: "options"), style: .plain, target: self, action: #selector(displayOptions))
@@ -122,7 +70,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
             
             let saveAction = UIAlertAction(title: "Save Location to Favorites", style: .default) { (action) in
                   SwiftSpinner.show("Saving Location")
-                  self.viewModel.saveLocation(lat: self.currentLocation.latitude, long: self.currentLocation.longitude, locationName: self.locationName, saveLocationCompletion: {[weak self] in
+                  self.viewModel.saveLocation(lat: self.viewModel.currentLocation.latitude, long: self.viewModel.currentLocation.longitude, locationName: self.locationName, saveLocationCompletion: {[weak self] in
                         self?.saveLocationResponse()
                     }, errorHandler: {[weak self] in
                         self?.saveLocationErrorHandler()
@@ -135,8 +83,100 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
             alertController.addAction(favaoritesAction)
             let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil )
             alertController.addAction(cancelButton)
-            //            alertController.view.tintColor =
+            alertController.view.tintColor = purpleColor
             self.present(alertController, animated: true, completion: nil)
+      }
+}
+
+extension MapViewController:CLLocationManagerDelegate
+{
+      //MARK: - Start Location Services
+      func startLocationServices() {
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.delegate = self
+            let locationAuthorizationStatus = CLLocationManager.authorizationStatus()
+            switch locationAuthorizationStatus {
+            case .notDetermined:
+                  self.locationManager.requestWhenInUseAuthorization()
+            case .authorizedWhenInUse, .authorizedAlways:
+                  if CLLocationManager.locationServicesEnabled() {
+                        self.locationManager.startUpdatingLocation()
+                  }
+            case .restricted, .denied:
+                  showAlertWithLocationAcess()
+            }
+            
+      }
+      //MARK: - locationManager Delegate methods
+      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            let lastLocation: CLLocation = locations[locations.count - 1]
+            viewModel.currentLocation.latitude = lastLocation.coordinate.latitude
+            viewModel.currentLocation.longitude = lastLocation.coordinate.longitude
+            addMarker()
+            locationManager.stopUpdatingLocation()
+      }
+      
+      func locationManager(_ manager: CLLocationManager,
+                           didChangeAuthorization status: CLAuthorizationStatus) {
+            switch status {
+            case .notDetermined:
+                  break
+            case .authorizedWhenInUse, .authorizedAlways:
+                  if CLLocationManager.locationServicesEnabled() {
+                        self.locationManager.startUpdatingLocation()
+                  }
+            case .restricted, .denied:
+                  self.showAlertWithLocationAcess()
+            }
+      }
+      
+      func showAlertWithLocationAcess() {
+            showAlert(title: NSLocalizedString("location-access-title", comment: ""), message: NSLocalizedString("location-access", comment: ""), vc: self, closure: {
+                  //add cairo notation
+                  self.addMarker()
+            })
+      }
+      
+      func addMarker() {
+            mapView.setCenter(CLLocationCoordinate2D(latitude: viewModel.currentLocation.latitude, longitude: viewModel.currentLocation.longitude), zoomLevel: 12, animated: false)
+            view.addSubview(mapView)
+            mapView.styleURL = MGLStyle.streetsStyleURL
+            mapView.delegate = self
+            
+            geocoder.reverseGeocodeLocation(CLLocation(latitude: viewModel.currentLocation.latitude, longitude: viewModel.currentLocation.longitude)) { (placemarks, error) in
+                  self.processGeocodeLocationResponse(withPlacemarks: placemarks, error: error)
+            }
+      }
+      
+      func processGeocodeLocationResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
+            // Update View
+            if error == nil {
+                  if let placemarks = placemarks, let placemark = placemarks.first {
+                       removeExistingAnnotation()
+                        addAnnotation(name: placemark.name ?? "", location: CLLocationCoordinate2D(latitude: viewModel.currentLocation.latitude, longitude:  viewModel.currentLocation.longitude))
+                  }
+            }
+      }
+      
+      func removeExistingAnnotation() {
+            if let annotations = mapView.annotations , annotations.count > 0
+            {
+                  mapView.removeAnnotation(annotations[0])
+            }
+      }
+      
+      func addAnnotation(name: String,location:CLLocationCoordinate2D) {
+            let newAnnotation = MGLPointAnnotation()
+            newAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude:location.longitude)
+            newAnnotation.title = "Hello"
+            newAnnotation.subtitle = name
+            locationName = name
+            mapView.addAnnotation(newAnnotation)
+      }
+      
+      // Allow callout view to appear when an annotation is tapped.
+      func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+            return true
       }
 }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Oyy-XU-TeI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,8 +45,8 @@
                             <constraint firstItem="Rbs-lc-NQw" firstAttribute="top" secondItem="OkM-mJ-dpF" secondAttribute="top" constant="1" id="ELI-AB-QaI"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" id="G1P-A8-voF"/>
                             <constraint firstItem="tOG-Uj-h6o" firstAttribute="top" secondItem="Rbs-lc-NQw" secondAttribute="bottom" constant="1" id="aVy-DB-4I7"/>
-                            <constraint firstItem="OkM-mJ-dpF" firstAttribute="trailing" secondItem="Rbs-lc-NQw" secondAttribute="trailing" id="lpH-9X-2Be"/>
-                            <constraint firstItem="Rbs-lc-NQw" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" id="vNX-IA-hPr"/>
+                            <constraint firstItem="OkM-mJ-dpF" firstAttribute="trailing" secondItem="Rbs-lc-NQw" secondAttribute="trailing" constant="-2" id="lpH-9X-2Be"/>
+                            <constraint firstItem="Rbs-lc-NQw" firstAttribute="leading" secondItem="OkM-mJ-dpF" secondAttribute="leading" constant="-2" id="vNX-IA-hPr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OkM-mJ-dpF"/>
                     </view>
@@ -66,7 +66,7 @@
         <!--Navigation Controller-->
         <scene sceneID="GMU-zn-yT8">
             <objects>
-                <navigationController id="Oyy-XU-TeI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" id="Oyy-XU-TeI" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="GOw-LZ-b8k">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -171,6 +171,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="map-pin" width="32" height="32"/>
+        <image name="map-pin" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
 </document>

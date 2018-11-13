@@ -8,9 +8,20 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class MapViewModel: NSObject {
-      var locations: [NSManagedObject] = []
+      //MARK: - Properties
+      var currentLocation : CLLocationCoordinate2D!
+      var isMainView :Bool!
+       var locations: [NSManagedObject] = []
+      //MARK: - intializers
+      init(isMainView : Bool = true,currentLocation : CLLocationCoordinate2D!) {
+            super.init()
+            self.isMainView = isMainView
+            self.currentLocation = currentLocation
+      }
+      //MARK: - Save Location
       func saveLocation(lat:Double,long:Double,locationName: String,saveLocationCompletion: (()->()),errorHandler:(()->())) {
             
             guard let appDelegate =
@@ -20,11 +31,9 @@ class MapViewModel: NSObject {
             let managedContext =
                   appDelegate.persistentContainer.viewContext
             
-
             let entity =
                   NSEntityDescription.entity(forEntityName: "Location",
                                              in: managedContext)!
-            
             let location = NSManagedObject(entity: entity,
                                            insertInto: managedContext)
             

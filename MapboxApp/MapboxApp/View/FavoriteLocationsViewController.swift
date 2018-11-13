@@ -63,13 +63,14 @@ class FavoriteLocationsViewController: UIViewController , UITableViewDataSource 
             openMap(index : indexPath.row)
       }
       func openMap(index : Int) {
-            let vc =  storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-            vc.isMainView = false
+            let mapVC =  storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+            mapVC.isMainView = false
             let location = viewModel.locations[index]
             let lat = location.value(forKeyPath: "latitude") as? Double
             let long = location.value(forKeyPath: "longitude") as? Double
-            vc.currentLocation = CLLocationCoordinate2D(latitude: lat!, longitude: long!)
-            self.navigationController?.pushViewController(vc, animated: true)
+            let mapViewModel = MapViewModel(isMainView: false, currentLocation: CLLocationCoordinate2D(latitude: lat!, longitude: long!))
+            mapVC.viewModel = mapViewModel
+            self.navigationController?.pushViewController(mapVC, animated: true)
       }
 }
 

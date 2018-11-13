@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,8 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            // Override point for customization after application launch.
+            setInitialViewController()
             return true
+      }
+      
+      func setInitialViewController() {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController") as! UINavigationController
+            //cairo location
+            let mapViewModel = MapViewModel(isMainView: true, currentLocation: CLLocationCoordinate2D(latitude: 30.06263, longitude: 31.24967))
+            let mapVC = initialViewController.viewControllers.first as! MapViewController
+            mapVC.viewModel = mapViewModel
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
       }
 
       func applicationWillResignActive(_ application: UIApplication) {

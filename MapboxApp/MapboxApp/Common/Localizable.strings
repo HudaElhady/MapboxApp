@@ -7,3 +7,5 @@
 */
 "general-error" = "Somthing went wrong";
 "save-success" = "Location saved successfully";
+"location-access" = "Location Access is needed to view your location";
+"location-access-title"="Location Access";
