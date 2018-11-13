@@ -25,7 +25,6 @@ class ShowAllLocationsViewController :UIViewController,MGLMapViewDelegate {
       }
       
       func setConfiguration() {
-            mapView.zoomLevel = 15
             mapView.styleURL = MGLStyle.streetsStyleURL
             mapView.delegate = self
            showAllAnnotation()
@@ -61,7 +60,7 @@ class ShowAllLocationsViewController :UIViewController,MGLMapViewDelegate {
             newAnnotation.coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude:location.longitude)
             newAnnotation.title = "Hello"
             newAnnotation.subtitle = name
-            return newAnnotation            
+            return newAnnotation
       }
       
       // Allow callout view to appear when an annotation is tapped.
