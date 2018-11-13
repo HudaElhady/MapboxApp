@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E6A9517219AEBA2007E1813 /* GeneralMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6A9516219AEBA2007E1813 /* GeneralMethods.swift */; };
+		1E6A9519219AEF22007E1813 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E6A9518219AEF22007E1813 /* Localizable.strings */; };
 		1EA12D2B219A3CD600FFC525 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2A219A3CD600FFC525 /* AppDelegate.swift */; };
 		1EA12D2D219A3CD600FFC525 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA12D2C219A3CD600FFC525 /* MapViewController.swift */; };
 		1EA12D30219A3CD600FFC525 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EA12D2E219A3CD600FFC525 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		00C2E9E8CCCEE4CDFDA2A04E /* Pods-MapboxApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapboxApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapboxApp/Pods-MapboxApp.debug.xcconfig"; sourceTree = "<group>"; };
+		1E6A9516219AEBA2007E1813 /* GeneralMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralMethods.swift; sourceTree = "<group>"; };
+		1E6A9518219AEF22007E1813 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		1EA12D27219A3CD600FFC525 /* MapboxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapboxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EA12D2A219A3CD600FFC525 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EA12D2C219A3CD600FFC525 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				1EA12D4C219A4A9A00FFC525 /* Constants.swift */,
+				1E6A9516219AEBA2007E1813 /* GeneralMethods.swift */,
+				1E6A9518219AEF22007E1813 /* Localizable.strings */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -206,6 +212,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6A9519219AEF22007E1813 /* Localizable.strings in Resources */,
 				1EA12D38219A3CD700FFC525 /* LaunchScreen.storyboard in Resources */,
 				1EA12D35219A3CD700FFC525 /* Assets.xcassets in Resources */,
 				1EA12D30219A3CD600FFC525 /* Main.storyboard in Resources */,
@@ -227,7 +234,6 @@
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -236,7 +242,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -273,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EA12D33219A3CD600FFC525 /* MapboxApp.xcdatamodeld in Sources */,
+				1E6A9517219AEBA2007E1813 /* GeneralMethods.swift in Sources */,
 				1EA12D4B219A49A700FFC525 /* LocationTableViewCell.swift in Sources */,
 				1EA12D2D219A3CD600FFC525 /* MapViewController.swift in Sources */,
 				1EA12D48219A48CC00FFC525 /* FavoriteLocationsViewModel.swift in Sources */,

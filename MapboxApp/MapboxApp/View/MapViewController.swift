@@ -53,11 +53,17 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
       
       func saveLocationResponse() {
             SwiftSpinner.hide()
+        showAlert(title: "", message: NSLocalizedString("save-success", comment: ""), vc: self, closure: nil)
       }
+    func saveLocationErrorHandler() {
+        SwiftSpinner.hide()
+        showAlert(title: "", message: NSLocalizedString("general-error", comment: ""), vc: self, closure: nil)
+    }
       
       func setupLocationAcess() {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.delegate = self
+        locationManager.distanceFilter = 1000
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
             //cairo location
@@ -68,32 +74,29 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
             currentLocation.latitude = lastLocation.coordinate.latitude
             currentLocation.longitude = lastLocation.coordinate.longitude
             addMarker()
-            locationManager.stopUpdatingLocation()
+//            locationManager.stopUpdatingLocation()
       }
       
       
       func addMarker() {
-            // Set the map’s center coordinate and zoom level.
             mapView.setCenter(CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude), zoomLevel: 12, animated: false)
             view.addSubview(mapView)
             mapView.styleURL = MGLStyle.streetsStyleURL
-            // Set the delegate property of our map view to `self` after instantiating it.
             mapView.delegate = self
             
             geocoder.reverseGeocodeLocation(CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)) { (placemarks, error) in
-                  // Process Response
                   self.processGeocodeLocationResponse(withPlacemarks: placemarks, error: error)
             }
       }
       
       func processGeocodeLocationResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
             // Update View
-            if let error = error {
-                  print("Unable to Reverse Geocode Location (\(error))")
-                  //                  locationLabel.text = "Unable to Find Address for Location"
-                  
-            } else {
+            if error == nil {
                   if let placemarks = placemarks, let placemark = placemarks.first {
+                   if let annotations = mapView.annotations , annotations.count > 0
+                   {
+                    mapView.removeAnnotation(annotations[0])
+                    }
                         let hello = MGLPointAnnotation()
                         hello.coordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude:  currentLocation.longitude)
                         hello.title = "Hello"
@@ -108,10 +111,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
       func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
             return true
       }
+    
       func addOptionsBtn()
       {
             let optionBtn = UIBarButtonItem(image: UIImage(named: "options"), style: .plain, target: self, action: #selector(displayOptions))
-            //            closeBtn.tintColor = UIColor.white
             navigationItem.rightBarButtonItem = optionBtn
       }
       @objc func displayOptions() {
@@ -121,7 +124,9 @@ class MapViewController: UIViewController,CLLocationManagerDelegate,MGLMapViewDe
                   SwiftSpinner.show("Saving Location")
                   self.viewModel.saveLocation(lat: self.currentLocation.latitude, long: self.currentLocation.longitude, locationName: self.locationName, saveLocationCompletion: {[weak self] in
                         self?.saveLocationResponse()
-                  })
+                    }, errorHandler: {[weak self] in
+                        self?.saveLocationErrorHandler()
+                })
             }
             alertController.addAction(saveAction)
             let favaoritesAction = UIAlertAction(title: "Show Favaorite Locations", style: .default) { (action) in

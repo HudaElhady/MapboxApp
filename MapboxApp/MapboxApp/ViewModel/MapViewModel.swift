@@ -11,7 +11,7 @@ import CoreData
 
 class MapViewModel: NSObject {
       var locations: [NSManagedObject] = []
-      func saveLocation(lat:Double,long:Double,locationName: String,saveLocationCompletion: (()->())) {
+      func saveLocation(lat:Double,long:Double,locationName: String,saveLocationCompletion: (()->()),errorHandler:(()->())) {
             
             guard let appDelegate =
                   UIApplication.shared.delegate as? AppDelegate else {
@@ -37,6 +37,7 @@ class MapViewModel: NSObject {
                   saveLocationCompletion()
             } catch let error as NSError {
                   print("Could not save. \(error), \(error.userInfo)")
+                errorHandler()
             }
       }
 }

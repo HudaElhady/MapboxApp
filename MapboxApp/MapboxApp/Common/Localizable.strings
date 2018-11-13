@@ -1,0 +1,9 @@
+/* 
+  LocalizeEn.strings
+  MapboxApp
+
+  Created by Huda El Hady on 11/13/18.
+  Copyright © 2018 huda.elhady. All rights reserved.
+*/
+"general-error" = "Somthing went wrong";
+"save-success" = "Location saved successfully";

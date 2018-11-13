@@ -11,6 +11,7 @@ import CoreData
 import SwiftSpinner
 import CoreLocation
 
+
 class FavoriteLocationsViewController: UIViewController , UITableViewDataSource , UITableViewDelegate {
       @IBOutlet weak var tableView: UITableView!
       var locations : [NSManagedObject] = []
@@ -24,14 +25,22 @@ class FavoriteLocationsViewController: UIViewController , UITableViewDataSource 
       
       func getLocations() {
             SwiftSpinner.show("Saving Location")
-            viewModel.getLocations(completion: {
-                  SwiftSpinner.hide()
-                  tableView.reloadData()
-            }, errorHandler: {
-                SwiftSpinner.hide()
-                tableView.reloadData()
-            })
+        viewModel.getLocations(completion: {[weak self] in
+            self?.getLocationResponse()
+            }, errorHandler: {[weak self] in
+                self?.getLocationErrorHandler()
+        })
       }
+    
+    func getLocationResponse() {
+        SwiftSpinner.hide()
+        tableView.reloadData()
+    }
+    func getLocationErrorHandler() {
+        SwiftSpinner.hide()
+        showAlert(title: "", message: NSLocalizedString("general-error", comment: "") , vc: self, closure: nil)
+    }
+    
       func tableView(_ tableView: UITableView,
                      numberOfRowsInSection section: Int) -> Int {
             return viewModel.locations.count

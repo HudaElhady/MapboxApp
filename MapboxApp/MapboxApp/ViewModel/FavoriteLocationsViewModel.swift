@@ -11,14 +11,7 @@ import CoreData
 
 class FavoriteLocationsViewModel: NSObject {
       var updateTable: (()->())!
-      var handleError : (()->())!
-      var locations: [NSManagedObject] = []{
-            didSet{
-                  if updateTable != nil {
-                        self.updateTable()
-                  }
-            }
-      }
+      var locations: [NSManagedObject] = []
     func getLocations(completion: (()->()),errorHandler:(()->())) {
             guard let appDelegate =
                   UIApplication.shared.delegate as? AppDelegate else {
